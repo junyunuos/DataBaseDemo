@@ -7,16 +7,25 @@
 //
 
 #import "ViewController.h"
-
+#import "FMDatabase.h"
+#import "NSObject+AddressDBCDispose.h"
 @interface ViewController ()
 
+@property(nonatomic,strong)FMDatabase* db;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+  
+        [self createDatabase];
+        NSMutableArray* addressArr=[[NSMutableArray alloc] init];
+        [addressArr addObject:[self selectProvinceList]];
+        [addressArr addObject:[self selectCityList:@"1"]];
+        [addressArr addObject:[self selectCityList:@"1"]];
+    
+    NSLog(@"%@",addressArr);
 }
 
 - (void)didReceiveMemoryWarning {
